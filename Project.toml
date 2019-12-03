@@ -1,0 +1,4 @@
+name = "Dionysus"
+uuid = "c56102ba-cd44-4ad9-9653-6353b4c99cce"
+authors = ["Ezra Eisbrenner <ezra.eisbrenner@gmail.com>"]
+version = "0.1.0"
