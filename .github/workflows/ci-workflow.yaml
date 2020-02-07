@@ -6,6 +6,7 @@ jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
+    - run: ls -gGAh
     - run: if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
     - uses: docker://julia:1.2
     - run: julia --project -e 'using Pkg; Pkg.test("Dionysus"; coverage=true)'
