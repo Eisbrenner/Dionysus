@@ -8,6 +8,8 @@ jobs:
     steps:
     - run: if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
     - uses: docker://julia:1.2
-    - run: using Pkg; Pkg.test("Dionysus"; coverage=true)
+    - run: using Pkg
+    - run: Pkg.activate .
+    - run: Pkg.test("Dionysus"; coverage=true)
     - uses: docker://julia:latest
     - run: julia --project -e 'using Pkg; Pkg.test("Dionysus"; coverage=true)'
