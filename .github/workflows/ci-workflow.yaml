@@ -7,12 +7,8 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - uses: docker://continuumio/miniconda3:4.7.12
-    - run: conda install -q -y -c conda-forge numpy && which python
+    - run: conda install -q -y -c conda-forge numpy
     - run: source $CONDA/bin/activate base
-    - run: echo $(pwd -P)
-    - run: echo $(ls -gGAh)
     - uses: actions/checkout@v2
-    - run: echo $(ls -gGAh)
-    - run: which python
-    - run: python pythonthings2.py
-    - run: python pythonthings.py
+    - run: /usr/share/miniconda/bin/python pythonthings2.py
+    - run: /usr/share/miniconda/bin/python pythonthings.py
