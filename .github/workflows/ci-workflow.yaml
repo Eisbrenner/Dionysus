@@ -19,7 +19,7 @@ jobs:
     - run: echo $(ls -A /)
     - run: echo $(ls -A /usr)
     - run: echo $(ls -A /usr/local)
-    - run: echo $(find / -iname "julia")
+    - run: echo $(find / -iname "julia" 2>/dev/null)
     - uses: actions/checkout@v2
     - run: if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
     - run: /usr/local/julia/bin/julia --project -e 'using Pkg; Pkg.test("Dionysus"; coverage=true)'
