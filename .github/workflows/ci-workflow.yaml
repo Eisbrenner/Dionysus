@@ -1,4 +1,4 @@
-name: Tests
+name: Thing
 
 on: [push]
 
@@ -6,8 +6,7 @@ jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
-    - run: if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
-    - uses: docker://julia:1.2
-    - run: /usr/local/julia/bin/julia --project -e 'using Pkg; Pkg.test("Dionysus"; coverage=true)'
-    - uses: docker://julia:latest
-    - run: /usr/local/julia/bin/julia --project -e 'using Pkg; Pkg.test("Dionysus"; coverage=true)'
+    - uses: docker://continuumio/miniconda3:4.7.12
+    - run: conda install -q -y -c conda-forge numpy
+    - run: source $CONDA/bin/activate base
+    - run: python pythonthings.py
