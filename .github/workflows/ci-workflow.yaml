@@ -11,6 +11,6 @@ jobs:
     - run: source $CONDA/bin/activate base
     - run: echo $(pwd -P)
     - run: echo $(ls -gGAh)
-    - uses: actions/checkout@v1
+    - uses: actions/checkout
     - run: echo $(ls -gGAh)
     - run: python pythonthings.py
