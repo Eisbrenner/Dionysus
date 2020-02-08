@@ -18,8 +18,7 @@ jobs:
     - uses: docker://julia:1.3
     - run: echo $(ls -A /)
     - run: echo $(ls -A /usr)
-    - run: echo $(ls -A /usr/local)
-    - run: echo $(find / -iname "julia" 2>/dev/null)
+    - run: echo $(ls -A1 /usr/share)
     - uses: actions/checkout@v2
     - run: if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
     - run: /usr/local/julia/bin/julia --project -e 'using Pkg; Pkg.test("Dionysus"; coverage=true)'
