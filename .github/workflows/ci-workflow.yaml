@@ -18,4 +18,4 @@ jobs:
     - uses: docker://julia:1.3
     - uses: actions/checkout@v2
     - run: if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
-    - run: /usr/local/julia/julia --project -e 'using Pkg; Pkg.test("Dionysus"; coverage=true)'
+    - run: /usr/local/julia --project -e 'using Pkg; Pkg.test("Dionysus"; coverage=true)'
