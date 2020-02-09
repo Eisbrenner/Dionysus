@@ -15,12 +15,14 @@ jobs:
   julia:
     runs-on: ubuntu-18.04
     steps:
+    - uses: actions/checkout@v2
     - uses: docker://julia:1.3
     - run: docker run --name julia -d julia:1.3
     - run: docker ps
-    - uses: actions/checkout@v2
-    - run: docker cp ./somescript.jl julia:/
+    - run: docker cp ./somescript.jl julia:/somescript.jl
+    - run: docker ps
     - run: docker exec julia julia somescript.jl
+    - run: docker ps
 
     # - run: if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
     # - run: /usr/share/julia/bin/julia --project -e 'using Pkg; Pkg.test("Dionysus"; coverage=true)'
