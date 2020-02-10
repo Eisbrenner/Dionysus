@@ -3,28 +3,10 @@ name: Thing
 on: [push]
 
 jobs:
-  conda:
-    runs-on: ubuntu-18.04
-    steps:
-    - run: conda --version
-    - uses: docker://continuumio/miniconda3:4.7.10
-    - run: conda --version
-    - run: conda install -q -y -c conda-forge numpy
-    - run: source $CONDA/bin/activate base
-    - uses: actions/checkout@v2
-    - run: /usr/share/miniconda/bin/python pythonthings2.py
-    - run: /usr/share/miniconda/bin/python pythonthings.py
   julia:
     runs-on: ubuntu-18.04
+    container: docker://julia:1.3
     steps:
     - uses: actions/checkout@v2
-    - uses: docker://julia:1.3
-    - run: docker run --name julia -d julia:1.3
-    - run: docker ps
-    - run: docker cp ./somescript.jl julia:/somescript.jl
-    - run: docker ps
-    - run: docker exec julia julia somescript.jl
-    - run: docker ps
-
-    # - run: if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
-    # - run: /usr/share/julia/bin/julia --project -e 'using Pkg; Pkg.test("Dionysus"; coverage=true)'
+    - run: if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
+    - run: julia --project -e 'using Pkg; Pkg.test("Dionysus"; coverage=true)'
